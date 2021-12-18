@@ -1,17 +1,25 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Header from "../components/header/header";
-import { apiTypes } from "../components/types/allVars.types";
+// import { apiTypes } from "../components/types/allVars.types";
 import WeatherInfo from "../components/weatherInfo/weatherInfo";
+import Error from "next/error";
 
 export default function Home({ result }) {
+  console.log("MAIN", result.cod);
   return (
     <div>
       <Head>
         <title>Weather-App</title>
       </Head>
-      <Header />
-      <WeatherInfo result={result} />
+      {result.cod != 404 ? (
+        <>
+          <Header />
+          <WeatherInfo result={result} />
+        </>
+      ) : (
+        <Error statusCode={result.cod} />
+      )}
     </div>
   );
 }
@@ -20,7 +28,7 @@ const API_KEY = "cc1d30e43dbdd38043f79ec7b12af914";
 
 export const getStaticProps: GetStaticProps = async () => {
   const req = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}`,
+    `http://api.openweathermap.org/data/2.5/weather?q=Dubai&appid=${API_KEY}`,
   );
   const result = await req.json();
 

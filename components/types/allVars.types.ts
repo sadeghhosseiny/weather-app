@@ -5,8 +5,18 @@ export type apiTypes = {
       temp: number;
       temp_min: number;
       temp_max: number;
+      humidity: number;
+    };
+    wind: {
+      deg: number;
+      speed: number;
     };
     name: string;
-    weather: [];
+    weather: [
+      {
+        icon: string;
+        main: string;
+      },
+    ];
   };
 };
