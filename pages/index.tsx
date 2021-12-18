@@ -1,19 +1,8 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Header from "../components/header/header";
-
-type ResultTypes = {
-  result: {
-    main: {
-      pressure: number;
-      temp: number;
-      temp_min: number;
-      temp_max: number;
-    };
-    name: string;
-    weather: [];
-  };
-};
+import { apiTypes } from "../components/types/allVars.types";
+import WeatherInfo from "../components/weatherInfo/weatherInfo";
 
 export default function Home({ result }) {
   return (
@@ -22,6 +11,7 @@ export default function Home({ result }) {
         <title>Weather-App</title>
       </Head>
       <Header />
+      <WeatherInfo result={result} />
     </div>
   );
 }
