@@ -1,12 +1,13 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Header from "../components/header/header";
-// import { apiTypes } from "../components/types/allVars.types";
 import WeatherInfo from "../components/weatherInfo/weatherInfo";
 import Error from "next/error";
+import { useState } from "react";
 
 export default function Home({ result }) {
-  console.log("MAIN", result.cod);
+  const [input, setInput] = useState<string>("");
+
   return (
     <div>
       <Head>
@@ -14,7 +15,7 @@ export default function Home({ result }) {
       </Head>
       {result.cod != 404 ? (
         <>
-          <Header />
+          <Header value={input} setInput={setInput} />
           <WeatherInfo result={result} />
         </>
       ) : (
@@ -28,7 +29,7 @@ const API_KEY = "cc1d30e43dbdd38043f79ec7b12af914";
 
 export const getStaticProps: GetStaticProps = async () => {
   const req = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=Dubai&appid=${API_KEY}`,
+    `http://api.openweathermap.org/data/2.5/weather?q=Tehran&appid=${API_KEY}`,
   );
   const result = await req.json();
 

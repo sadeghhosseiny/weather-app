@@ -2,6 +2,7 @@ import React from "react";
 import { apiTypes } from "../types/allVars.types";
 import {
   WiDaySunny,
+  WiNightClear,
   WiThermometer,
   WiHumidity,
   WiDirectionDown,
@@ -16,20 +17,55 @@ function WeatherInfo({ result }: apiTypes) {
   let tempMax = (result?.main?.temp_max - 273.15).toFixed(2);
   let tempMin = (result?.main?.temp_min - 273.15).toFixed(2);
 
+  let d = new Date();
+  let date = d.getDate();
+  let year = d.getFullYear();
+  let month = d.toLocaleDateString("default", { month: "long" });
+  let day = d.toLocaleDateString("default", { weekday: "long" });
+
+  let Time = d.toLocaleTimeString([], {
+    hour12: false,
+  });
+
+  let weather = {
+    Haze: "text-gray-900",
+    Mist: "text-gray-900",
+    Fog: "text-gray-900",
+    Snow: "text-gray-900",
+  };
+
   return (
-    <div className="relative flex justify-center text-slate-200">
+    <div
+      className={`relative flex justify-center ${
+        weather[result.weather[0].main]
+          ? weather[result.weather[0].main]
+          : "text-slate-200"
+      }`}
+    >
       <img
-        src={"https://source.unsplash.com/random/1920x1080/?nature,Clouds"}
+        src={`https://source.unsplash.com/random/1920x1080/?nature,${result?.weather[0].main}`}
       />
       <div className="w-full max-w-4xl border-2 border-slate-400 flex flex-col justify-center absolute top-6 backdrop-blur-sm">
         <h1 className="text-5xl mx-auto font-extralight my-4">
           {result?.name}
         </h1>
+        <h1 className="text-4xl mx-auto mb-1">
+          {day}, {month} {date}, {year}
+        </h1>
+        <h2 suppressHydrationWarning={true} className="text-3xl my-2 mx-auto">
+          {Time.slice(0, 5)}
+        </h2>
         <div className="flex flex-col items-center">
-          <img
-            src={`http://openweathermap.org/img/wn/${result?.weather[0]?.icon}@2x.png`}
-            alt=""
-          />
+          {result?.weather[0]?.icon == "01d" ? (
+            <WiDaySunny className="h-24 w-24 text-yellow-400" />
+          ) : result?.weather[0]?.icon == "01n" ? (
+            <WiNightClear className="h-24 w-24 text-yellow-400" />
+          ) : (
+            <img
+              src={`http://openweathermap.org/img/wn/${result?.weather[0]?.icon}@2x.png`}
+              alt=""
+            />
+          )}
           <h1 className="text-3xl font-extralight my-4">
             {result?.weather[0]?.main}
           </h1>

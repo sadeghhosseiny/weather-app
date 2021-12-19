@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { SearchIcon } from "@heroicons/react/outline";
+import { input } from "../types/allVars.types";
 
-function Header() {
+function Header({ setInput, value }: input) {
   return (
     <nav className="bg-gray-600 flex justify-between w-full h-20 sticky top-0 z-50">
       <div className="flex flex-1 max-w-lg">
@@ -23,6 +24,8 @@ function Header() {
             type="text"
             placeholder="Weather in your city"
             className="bg-transparent outline-none text-gray-100"
+            onChange={(e) => setInput(e.target.value)}
+            value={value}
           />
         </div>
       </div>

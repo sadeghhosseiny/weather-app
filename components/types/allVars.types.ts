@@ -20,3 +20,8 @@ export type apiTypes = {
     ];
   };
 };
+
+export type input = {
+  value: string;
+  setInput: (event) => void;
+};
