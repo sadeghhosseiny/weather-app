@@ -2,8 +2,18 @@ import Image from "next/image";
 import React from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import { input } from "../types/allVars.types";
+import { useRouter } from "next/router";
 
-function Header({ setInput, value }: input) {
+function Header({ setInput, input }: input) {
+  const router = useRouter();
+
+  const handleGetWeatherForCity: (
+    event: React.MouseEvent<SVGSVGElement, MouseEvent>,
+  ) => void = (e) => {
+    e.preventDefault;
+    router.push(`?city=${input.trim()}`);
+  };
+
   return (
     <nav className="bg-gray-600 flex justify-between w-full h-20 sticky top-0 z-50">
       <div className="flex flex-1 max-w-lg">
@@ -19,13 +29,16 @@ function Header({ setInput, value }: input) {
           />
         </div>
         <div className="p-3 flex-1 rounded-full border-2 border-white flex items-center mt-3 mb-4">
-          <SearchIcon className="h-5 mr-3 text-orange-400 cursor-pointer" />
+          <SearchIcon
+            onClick={handleGetWeatherForCity}
+            className="h-5 mr-3 text-orange-400 cursor-pointer"
+          />
           <input
             type="text"
             placeholder="Weather in your city"
             className="bg-transparent outline-none text-gray-100"
             onChange={(e) => setInput(e.target.value)}
-            value={value}
+            // value={value}
           />
         </div>
       </div>

@@ -1,12 +1,12 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import Header from "../components/header/header";
 import WeatherInfo from "../components/weatherInfo/weatherInfo";
 import Error from "next/error";
 import { useState } from "react";
 
-export default function Home({ result }) {
-  const [input, setInput] = useState<string>("");
+export default function Home({ result, ctx }) {
+  const [input, setInput] = useState<string>("Tehran");
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default function Home({ result }) {
       </Head>
       {result.cod != 404 ? (
         <>
-          <Header value={input} setInput={setInput} />
+          <Header input={input} setInput={setInput} />
           <WeatherInfo result={result} />
         </>
       ) : (
@@ -27,9 +27,12 @@ export default function Home({ result }) {
 
 const API_KEY = "cc1d30e43dbdd38043f79ec7b12af914";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const city = context.query.city;
   const req = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=Tehran&appid=${API_KEY}`,
+    `http://api.openweathermap.org/data/2.5/weather?q=${
+      city || "Tehran"
+    }&appid=${API_KEY}`,
   );
   const result = await req.json();
 

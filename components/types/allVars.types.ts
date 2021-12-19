@@ -22,6 +22,6 @@ export type apiTypes = {
 };
 
 export type input = {
-  value: string;
+  input: string;
   setInput: (event) => void;
 };

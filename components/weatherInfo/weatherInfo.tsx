@@ -9,10 +9,9 @@ import {
   WiStrongWind,
   WiWindDeg,
 } from "weather-icons-react";
+import Image from "next/image";
 
 function WeatherInfo({ result }: apiTypes) {
-  console.log("RES", result);
-
   let temp = (result?.main?.temp - 273.15).toFixed(2);
   let tempMax = (result?.main?.temp_max - 273.15).toFixed(2);
   let tempMin = (result?.main?.temp_min - 273.15).toFixed(2);
@@ -42,8 +41,10 @@ function WeatherInfo({ result }: apiTypes) {
           : "text-slate-200"
       }`}
     >
-      <img
+      <Image
         src={`https://source.unsplash.com/random/1920x1080/?nature,${result?.weather[0].main}`}
+        width={1680}
+        height={900}
       />
       <div className="w-full max-w-4xl border-2 border-slate-400 flex flex-col justify-center absolute top-6 backdrop-blur-sm">
         <h1 className="text-5xl mx-auto font-extralight my-4">
@@ -59,11 +60,13 @@ function WeatherInfo({ result }: apiTypes) {
           {result?.weather[0]?.icon == "01d" ? (
             <WiDaySunny className="h-24 w-24 text-yellow-400" />
           ) : result?.weather[0]?.icon == "01n" ? (
-            <WiNightClear className="h-24 w-24 text-yellow-400" />
+            <WiNightClear className="h-24 w-24 text-slate-800" />
           ) : (
-            <img
+            <Image
               src={`http://openweathermap.org/img/wn/${result?.weather[0]?.icon}@2x.png`}
               alt=""
+              width={150}
+              height={150}
             />
           )}
           <h1 className="text-3xl font-extralight my-4">
