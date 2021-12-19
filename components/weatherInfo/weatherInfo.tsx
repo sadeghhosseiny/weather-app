@@ -22,9 +22,11 @@ function WeatherInfo({ result }: apiTypes) {
   let month = d.toLocaleDateString("default", { month: "long" });
   let day = d.toLocaleDateString("default", { weekday: "long" });
 
-  let Time = d.toLocaleTimeString([], {
-    hour12: false,
-  });
+  let Time = [
+    d.getHours() < 10 ? "0" + d.getHours() : d.getHours(),
+    ":",
+    d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes(),
+  ];
 
   let weather = {
     Haze: "text-gray-900",
@@ -41,40 +43,54 @@ function WeatherInfo({ result }: apiTypes) {
           : "text-slate-200"
       }`}
     >
-      <Image
-        src={`https://source.unsplash.com/random/1920x1080/?nature,${result?.weather[0].main}`}
-        width={1680}
-        height={900}
-      />
-      <div className="w-full max-w-4xl border-2 border-slate-400 flex flex-col justify-center absolute top-6 backdrop-blur-sm">
-        <h1 className="text-5xl mx-auto font-extralight my-4">
+      <div className="max-w-screen-2xl mx-auto">
+        <Image
+          src={`https://source.unsplash.com/random/1920x1080/?nature,${result?.weather[0].main}`}
+          width={1680}
+          height={900}
+        />
+      </div>
+      <div
+        className="w-full max-w-4xl border-2 border-slate-400 flex flex-col
+       justify-center absolute top-6 backdrop-blur-sm card-screen:h-50"
+      >
+        <h1 className="text-xl text-screen1:text-5xl mx-auto font-extralight my-1 text-screen1:my-4">
           {result?.name}
         </h1>
-        <h1 className="text-4xl mx-auto mb-1">
-          {day}, {month} {date}, {year}
-        </h1>
-        <h2 suppressHydrationWarning={true} className="text-3xl my-2 mx-auto">
-          {Time.slice(0, 5)}
-        </h2>
+        <div className="flex justify-center items-center flex-row text-screen1:flex-col space-x-10">
+          <h1 className="text-xl text-screen1:text-4xl text-screen1:mx-auto text-screen1:mb-1">
+            {day}, {month} {date}, {year}
+          </h1>
+          <h2
+            suppressHydrationWarning={true}
+            className="text-xl text-screen1:text-3xl text-screen1:my-2 text-screen1:mx-auto"
+          >
+            {Time.slice(0, 5)}
+          </h2>
+        </div>
         <div className="flex flex-col items-center">
           {result?.weather[0]?.icon == "01d" ? (
-            <WiDaySunny className="h-24 w-24 text-yellow-400" />
+            <WiDaySunny className="w-20 h-20 text-screen1:h-24 text-screen1:w-24 text-yellow-400" />
           ) : result?.weather[0]?.icon == "01n" ? (
-            <WiNightClear className="h-24 w-24 text-slate-800" />
+            <WiNightClear className="w-20 h-20 text-screen1:h-24 text-screen1:w-24 text-slate-800" />
           ) : (
-            <Image
-              src={`http://openweathermap.org/img/wn/${result?.weather[0]?.icon}@2x.png`}
-              alt=""
-              width={150}
-              height={150}
-            />
+            <div className="w-24 h-24 text-screen1:w-full text-screen1:h-full text-screen1:flex justify-center">
+              <Image
+                src={`http://openweathermap.org/img/wn/${result?.weather[0]?.icon}@2x.png`}
+                alt=""
+                width={150}
+                height={150}
+              />
+            </div>
           )}
-          <h1 className="text-3xl font-extralight my-4">
+          <h1 className="text-3xl hidden text-screen2:block font-extralight my-4">
             {result?.weather[0]?.main}
           </h1>
           <div className="flex mt-3">
-            <span className="text-4xl font-bold">{temp} &deg;C</span>
-            <WiThermometer className="h-14 w-14" />
+            <span className="text-xl text-screen1:text-4xl font-bold">
+              {temp} &deg;C
+            </span>
+            <WiThermometer className="w-9 h-9 text-screen2:h-14 text-screen2:w-14" />
           </div>
         </div>
         <div className="flex mt-5 mx-auto">
@@ -83,7 +99,7 @@ function WeatherInfo({ result }: apiTypes) {
           <span className="ml-4 text-xl">Min: {tempMin}</span>
           <WiThermometer className="h-10 w-10" />
         </div>
-        <div className="flex items-center mx-auto mt-5">
+        <div className="hidden text-screen2:flex items-center mx-auto mt-5">
           <h2 className="text-2xl">humidity: {result?.main?.humidity}</h2>
           <WiHumidity className="h-10 w-10 text-blue-300" />
           <h2 className="text-2xl ml-4">pressure: {result?.main?.pressure}</h2>

@@ -4,12 +4,13 @@ import Header from "../components/header/header";
 import WeatherInfo from "../components/weatherInfo/weatherInfo";
 import Error from "next/error";
 import { useState } from "react";
+import MiddleSection from "../components/middleSection/middleSection";
 
 export default function Home({ result, ctx }) {
   const [input, setInput] = useState<string>("Tehran");
 
   return (
-    <div>
+    <div className="bg-gray-300">
       <Head>
         <title>Weather-App</title>
       </Head>
@@ -17,6 +18,7 @@ export default function Home({ result, ctx }) {
         <>
           <Header input={input} setInput={setInput} />
           <WeatherInfo result={result} />
+          <MiddleSection />
         </>
       ) : (
         <Error statusCode={result.cod} />
