@@ -25,3 +25,12 @@ export type input = {
   input: string;
   setInput: (event) => void;
 };
+
+export type footerItem = {
+  item: {
+    title: string;
+    links: {
+      link: string;
+    }[];
+  };
+};

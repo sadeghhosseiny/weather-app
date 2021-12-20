@@ -5,6 +5,7 @@ import WeatherInfo from "../components/weatherInfo/weatherInfo";
 import Error from "next/error";
 import { useState } from "react";
 import MiddleSection from "../components/middleSection/middleSection";
+import Footer from "../components/footer/footer";
 
 export default function Home({ result, ctx }) {
   const [input, setInput] = useState<string>("Tehran");
@@ -19,6 +20,7 @@ export default function Home({ result, ctx }) {
           <Header input={input} setInput={setInput} />
           <WeatherInfo result={result} />
           <MiddleSection />
+          <Footer />
         </>
       ) : (
         <Error statusCode={result.cod} />
