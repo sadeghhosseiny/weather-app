@@ -11,7 +11,7 @@ export default function Home({ result, ctx }) {
   const [input, setInput] = useState<string>("Tehran");
 
   return (
-    <div className="bg-gray-300">
+    <div className="bg-gray-300 min-w-700">
       <Head>
         <title>Weather-App</title>
       </Head>

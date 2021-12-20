@@ -7,14 +7,23 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'card-screen': { 'max': '1410px' },
+        'card-screen1': { 'max': '1410px' },
+        'card-screen2': { 'max': '715px' },
         'text-screen1': { 'min': '1330px' },
         'text-screen2': { 'min': '1000px' },
         'footer-screen': { 'max': '1000px' },
         'xlg': { 'min': '1100px' },
+        'header-screen': { 'max': '850px' },
       },
       height: {
-        '50': '50vw'
+        '50': '50vw',
+        '351': '351px'
+      },
+      width: {
+        '700': '700px'
+      },
+      minWidth: {
+        '700': '700px'
       }
     },
   },

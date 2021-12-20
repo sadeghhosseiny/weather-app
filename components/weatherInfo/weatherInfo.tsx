@@ -52,18 +52,18 @@ function WeatherInfo({ result }: apiTypes) {
       </div>
       <div
         className="w-full max-w-4xl border-none xlg:border-2 xlg:border-solid border-slate-400 flex flex-col
-       justify-center absolute top-6 backdrop-blur-sm card-screen:h-50"
+       justify-center absolute top-6 backdrop-blur-sm card-screen1:h-50 card-screen2:h-351 card-screen2:w-351"
       >
-        <h1 className="text-xl text-screen1:text-5xl mx-auto font-extralight my-1 text-screen1:my-4">
+        <h1 className="text-xl text-screen1:text-5xl mx-auto my-1 text-screen1:my-4">
           {result?.name}
         </h1>
-        <div className="flex justify-center items-center flex-row text-screen1:flex-col space-x-10">
-          <h1 className="text-xl text-screen1:text-4xl text-screen1:mx-auto text-screen1:mb-1">
+        <div className="flex justify-center items-center flex-row text-screen1:flex-col space-x-10 text-screen1:space-x-0">
+          <h1 className="text-xl text-screen1:text-4xl font-extralight text-screen1:mx-auto text-screen1:mb-1">
             {day}, {month} {date}, {year}
           </h1>
           <h2
             suppressHydrationWarning={true}
-            className="text-xl text-screen1:text-3xl text-screen1:my-2 text-screen1:mx-auto"
+            className="text-xl text-screen1:text-3xl font-extralight text-screen1:my-2"
           >
             {Time.slice(0, 5)}
           </h2>
@@ -83,33 +83,33 @@ function WeatherInfo({ result }: apiTypes) {
               />
             </div>
           )}
-          <h1 className="text-3xl hidden text-screen2:block font-extralight my-4">
+          <h1 className="text-xl text-screen2:text-3xl font-extralight text-screen2:my-4">
             {result?.weather[0]?.main}
           </h1>
           <div className="flex mt-3">
             <span className="text-xl text-screen1:text-4xl font-bold">
               {temp} &deg;C
             </span>
-            <WiThermometer className="w-9 h-9 text-screen2:h-14 text-screen2:w-14" />
+            <WiThermometer className="w-9 h-9 text-red-500 text-screen2:h-14 text-screen2:w-14" />
           </div>
         </div>
         <div className="flex mt-5 mx-auto">
           <span className="text-xl">Max: {tempMax}</span>
-          <WiThermometer className="h-10 w-10" />
+          <WiThermometer className="h-10 w-10 text-red-500" />
           <span className="ml-4 text-xl">Min: {tempMin}</span>
-          <WiThermometer className="h-10 w-10" />
+          <WiThermometer className="h-10 w-10 text-red-500" />
         </div>
         <div className="hidden text-screen2:flex items-center mx-auto mt-5">
           <h2 className="text-2xl">humidity: {result?.main?.humidity}</h2>
           <WiHumidity className="h-10 w-10 text-blue-300" />
           <h2 className="text-2xl ml-4">pressure: {result?.main?.pressure}</h2>
-          <WiDirectionDown className="h-16 w-16 -ml-4" />
+          <WiDirectionDown className="h-16 w-16 -ml-4 text-blue-300" />
         </div>
         <div className="flex mt-4 mb-10 mx-auto">
           <h2 className="text-2xl">speed of wind: {result?.wind?.speed}</h2>
           <WiStrongWind className="h-10 w-10 text-white" />
           <h2 className="text-2xl ml-4">deg: {result?.wind?.deg}</h2>
-          <WiWindDeg className="h-10 w-10" />
+          <WiWindDeg className="h-10 w-10 text-white" />
         </div>
       </div>
     </div>
