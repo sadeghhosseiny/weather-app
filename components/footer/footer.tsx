@@ -49,8 +49,8 @@ function Footer() {
   ];
 
   return (
-    <>
-      <div className="bg-gray-300 p-10 flex footer-screen:flex-col">
+    <div className="bg-gray-300 ">
+      <div className="p-10 flex footer-screen:flex-col">
         {items.map((item, index) => (
           <FooterItem key={index} item={item} />
         ))}
@@ -101,7 +101,7 @@ function Footer() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

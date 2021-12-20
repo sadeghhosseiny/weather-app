@@ -11,13 +11,14 @@ module.exports = {
         'card-screen2': { 'max': '715px' },
         'text-screen1': { 'min': '1330px' },
         'text-screen2': { 'min': '1000px' },
+        'text-screen3': { 'max': '915px' },
         'footer-screen': { 'max': '1000px' },
         'xlg': { 'min': '1100px' },
         'header-screen': { 'max': '850px' },
       },
       height: {
         '50': '50vw',
-        '351': '351px'
+        '351': '375px'
       },
       width: {
         '700': '700px'

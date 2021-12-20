@@ -52,9 +52,9 @@ function WeatherInfo({ result }: apiTypes) {
       </div>
       <div
         className="w-full max-w-4xl border-none xlg:border-2 xlg:border-solid border-slate-400 flex flex-col
-       justify-center absolute top-6 backdrop-blur-sm card-screen1:h-50 card-screen2:h-351 card-screen2:w-351"
+       justify-center absolute top-6 backdrop-blur-sm card-screen1:h-50 card-screen2:h-351 card-screen2:w-351 text-screen3:top-0"
       >
-        <h1 className="text-xl text-screen1:text-5xl mx-auto my-1 text-screen1:my-4">
+        <h1 className="text-xl text-screen1:text-5xl mx-auto my-1 text-screen3:mt-4 text-screen1:my-4">
           {result?.name}
         </h1>
         <div className="flex justify-center items-center flex-row text-screen1:flex-col space-x-10 text-screen1:space-x-0">
