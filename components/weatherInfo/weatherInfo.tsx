@@ -51,7 +51,7 @@ function WeatherInfo({ result }: apiTypes) {
         />
       </div>
       <div
-        className="w-full max-w-4xl border-2 border-slate-400 flex flex-col
+        className="w-full max-w-4xl border-none md:border-2 md:border-solid border-slate-400 flex flex-col
        justify-center absolute top-6 backdrop-blur-sm card-screen:h-50"
       >
         <h1 className="text-xl text-screen1:text-5xl mx-auto font-extralight my-1 text-screen1:my-4">
