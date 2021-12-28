@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 NOTE: connect with VPN.
 
-**************** LIVE DEMO https://weather-app-woad-omega.vercel.app *********************
+**************** LIVE https://weather-app-woad-omega.vercel.app *********************
 
 ## Getting Started
 
